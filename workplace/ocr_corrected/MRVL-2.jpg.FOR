@@ -1,0 +1,34 @@
+10    IF(R(LIFE(I)).GT.S(K)) GOTO 9
+6     IF(I.EQ.I1) GOTO 7
+      IF(R(LIFE(I+1)).LE.R(K)) GOTO 7
+      I=I+1
+      GOTO 6
+7     CAR(CAR(TRVL))=LIFE (I)
+      GOTO 20
+9     IF(I.EQ.I1) GOTO 11
+      IF(R(LIFE(I+1)).LE.R (K) ) GOTO 11
+      I=I+1
+      GOTO 10
+11    IF(TRVL.EQ.PR) GOTO 12
+      CDR(Q)=CDR(TRVL)
+      TRVL=Q
+      GOTO 8
+12    CAR(TRVL)=CAR(CDR(TRVL))
+      CDR(TRVL)=CDR(CDR(TRVL))
+      GOTO 3
+80    IF(CDR(CDR(PR)).NE.NIL) GOTO 81
+      OUT1=1
+      CAR(PR)=IAND(CAR(PR),M2)
+      CAR(CAR(PR))=IAND(CAR(CAR(PR)),M2)
+      PR1=CDR(PR)
+      CAR(PR1)=IAND(CAR(PR1),M2)
+      CAR(CAR(PR1))=IAND(CAR(CAR(PR1)),M2)
+      OUT2=CDR(CAR(PR 1))
+      GOTO 90
+81    CAR(IAND(CAR(PR),M2))=IOR(1,M1)
+      CDR(IAND(CAR(PR),M2))=CDR (PR)
+      OUT1=0
+      OUT2=0
+90    CONTINUE
+      RETURN
+      END

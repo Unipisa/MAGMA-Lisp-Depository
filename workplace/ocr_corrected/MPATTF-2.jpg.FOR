@@ -1,0 +1,55 @@
+C
+      COMMON
+     */ NIL / NIL
+     */ BASE / BASE
+     */ NEVALV / NEVALV
+     */ UNNO / UNNO
+     */ NTYPEE / NTYPEE
+     */ ACXT / ACXT
+     */ AAK / AAK
+     */ RADIX / RADIX
+     */ RRADIX/ RRADIX
+     */ PPDEM / PPDEM
+     */ CXTM / CXTM
+     */ CXTT / CXTT
+     */ NAPPID / NAPPID
+     */ T / T
+C
+C
+       DIMENSION
+     *FUN(1284),RETP (1284),CP(1284),BLP(1284),SEGNO(1284),ABP(1284),
+     *BIND(3072),VAR(3072),BBP(3072),SONBRO(4096),NREENT (4096),
+     *VALORE(4096),INF(4096),LISTAR(4096),BLINK(4096)
+C
+C
+       EQUIVALENCE
+     *(ABLOCK(1),FUN(1)).
+     *(ABLOCK(2),RETP(1)),
+     *(ABLOCK(3),CP(1)),
+     *(ABLOCK(4),BLP(1)),
+     *(ABLOCK(5),SEGNO(1)),
+     *(ABLOCK(6),ABP(1)),
+     *(BBLOCK(1),BIND(1)),
+     *(BBLOCK(2),VAR(1)),
+     *(BBLOCK(3),BBP(1)),
+     *(CBLOCK(1),SONBRO(1)),
+     *(CBLOCK(2),NREENT(1)),
+     *(CBLOCK(3),VALORE(1)),
+     *(CBLOCK(3),INP(1)),
+     *(CBLOCK(4),LISTAR(1)),
+     *(CBLOCK(4),BLINK(1))
+C
+      DATA KEYM/-1/,UNO/1/,TRE/3/,DUE/2/
+C
+      CALL GETARG
+      INDIC = NENTPO-71
+      GO TO
+     *(72,73,74,75,3,3,78,79,80),INDIC
+3     WRITE(6,1004) NENTPO
+1004  FORMAT (' MPATTE,NENTPO ERRATO',I10)
+      CALL HLT
+C     DELOCAZIONE E RITORNO.
+76831 IF (ALMODE .NE. 0) GO TO 1
+      CALL CPOP
+      SONBRO(CPOINT) = MOD(SONBRO(CPOINT),UNNO)
+      GO TO 2

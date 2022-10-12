@@ -1,0 +1,40 @@
+C     CREA LA LISTA DEI CONTESTI VIVI
+C
+      SUBROUTINE  MLIFE
+      IMPLICIT INTEGER (A-Z)
+      INTEGER*2 RADIX,R,LIB,LIST,CXTX
+      COMMON
+     */NUMCXT/ NUMCXT
+     */RADIX/RADIX
+     */R/F1(3),R(128)
+     */CXTX/F3(3),CXTX(128)
+     */LIFE/LIFE(128)
+     */I1/I1
+     */LIB/LIB
+     */LIST/F4(3),LIST(128)
+      I1=0
+      IP1=0
+      GO TO 2
+      IF(IPUNT.EQ.0) GO TO 3
+      I1=I1+1
+      LIFE(I1)=IPUNT
+      IP1=IPUNT
+2     J2=RADIX
+      R1=0
+      IPUNT=0
+6     IF(CXTX(J2).LE.O) GO TO 4
+      IF(IP1.EQ.0) GO TO 5
+      IF(R(J2).GE.R(IP1)) GO TO 4
+5     IF(R(J2).LE.R1) GO TO 4
+      R1=R(J2)
+      IPUNT=J2
+4     IF(J2.EQ.LIB) GO TO 1
+      J2=LIST(J2)
+      GO TO 6
+C3     WRITE(6,10)
+C 10   FORMAT(' LISTA DEI CONTESTI VIVI')
+C      WRITE(6,11) (LIFE(I),I=1,11)
+C11    FORMAT (1X, 10I6)
+3     NUMCXT=I1
+      RETURN
+      END

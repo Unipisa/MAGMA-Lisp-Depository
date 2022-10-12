@@ -1,0 +1,89 @@
+C    MARCATURA E AGGIORNAMENTO RVL
+C    PER INGRESSI NEL C-BLOCK
+C
+      SUBROUTINE MRVLC(PR,OUT1,OUT2)
+      IMPLICIT INTEGER(A-Z)
+      COMMON /I/I  /K/K   /TRVL/TRVL
+      INTEGER*2 R,S,CXTX
+      COMMON
+     */CAR/A(4),CAR(10000)
+     */CDR/B(4),CDR(10000)
+     */CXTX/F(3),CXTX(128)
+     */R/F1(3),R(128)
+     */S/F2(3),S(128)
+     */LIFE/LIFE(128)
+     */I1/I1
+     */VALUE/C(4),VALUE(1023)
+     */NTYPEE/NTYPEE
+     */NIL/NIL
+      DATA M1/Z80000000/
+      DATA M2/Z7FFFFFFF/
+      IF (CAR(PR).GE.0) GO TO 100
+      WRITE(6,101)
+101   FORMAT (' SYSTEM ERROR: MRVLC')
+      CALL HLT
+100   CAR(CAR(PR))=IOR(CAR(CAR(PR)),M1)
+      CAR(PR)=IOR(CAR(PR),M1)
+      Q=PR
+      TRVL=CDR(PR)
+      I=1
+3     IF(CAR(TRVL).GE.0) GO TO 102
+      WRITE(6,101)
+      CALL HLT
+102   K=CAR(CAR(TRVL))
+      IF(CXTX(K).LT.0) GO TO 5
+      CONTINUE
+      IF(LIFE(I).EQ.K) GO TO 20
+      I=I+1
+      GO TO 1
+20    PUNC=CDR(CAR(TRVL))
+      MAR=PUNC/NTYPEE
+      IF(MAR.NE.O) GOTO 21
+      CALL MCBL(PUNC)
+21    CAR(CAR(TRVL))=IOR(CAR(CAR(TRVL)), M1)
+      CAR(TRVL)=IOR(CAR(TRVL),M1)
+2     IF(I.EQ.I1) GO TO 4
+      I=I+1
+8     IF(CDR(TRVL).EQ.NIL) GO TO 80
+      Q=TRVL
+      TRVL=CDR(TRVL)
+      GO TO 3
+4     CDR(TRVL) =NIL
+      GO TO 80
+5     CONTINUE
+      IF(R(LIFE(I)).LT.R(K)) GO TO 11
+10    CONTINUE
+      IF(R(LIFE(I)).GT.S(K)) GO TO 9
+6     IF(I.EQ.I1) GO TO 7
+      IF(R(LIFE(I+1)).LE.R(K)) GO TO 7
+      I=I+1
+      GO TO 6
+7     CAR(CAR(TRVL))=LIFE(I)
+      GO TO 20
+9     IF(I.EQ.I1) GO TO 11
+      IF(R(LIFE(I+1)).LE.R(K)) GO TO 11
+      I=I+1
+      GO TO 10
+11    IF(TRVL.EQ.PR) GO TO 12
+      CDR(Q)=CDR(TRVL)
+      TRVL=Q
+      GO TO 8
+12    CAR(TRVL)=CAR(CDR(TRVL))
+      CDR(TRVL)=CDR(CDR(TRVL))
+      GO TO 3
+80    IF(CD(CDR(PR)).NE.NIL) GO TO 81
+      OUT1=1
+      CAR(PR)=IAND(CAR(PR),M2)
+      CAR(CAR(PR))=IAND(CAR(CAR(PR)),M2)
+      PR1=CDR(PR)
+      CAR(PR1)=IAND(CAR(PR1),M2)
+      CAR(CAR(PR1))=XAND(CAR(CAR(PR1)),M2)
+      OUT2=CDR(CAR(PR1))
+      GO TO 90
+81    CAR(IAND(CAR(PR),M2))=IOR(1,M1)
+      CDR(IAND(CAR(PR),M2))=CDR(PR)
+      OUT1=0
+      OUT2=0
+90    CONTINUE
+      RETURN
+      END

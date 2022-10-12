@@ -1,0 +1,83 @@
+C     MARCATURA E AGGIORNAMENTO
+C     DELLE LISTE DEI VALORI RIDEFINITI
+C      CONTENUTI NEGLI ELEMENTI DI "SCT"
+C
+      SUBROUTINE RVLSC(PR,OUT1,OUT2)
+      IMPLICIT INTEGER(A-Z)
+      INTEGER*2 R,S,CXTX
+      COMMON
+     */CAR/A(4),CAR(5000)
+     */CDR/B(4),CDR(5000)
+     */CXTX/F3(3),CXTX(128)
+     */R/F1(3),R(128)
+     */S/P2(3),5(128)
+     */LIFE/LIFE(128)
+     */I1/I1
+     */VALUE/C(4),VALUE(1023)
+     */NTYPEE/NTYPEE
+     */NIL/NIL
+      DATA M1/Z80000000/
+      DATA M2/Z7FFFFFFF/
+      IF(CAR(PR).GE.0) GO TO 100
+      WRITE(6,101)
+101   FORMAT(' SYSTEM ERROR:RVLSC')
+      CALL HLT
+100   CAR(CAR(PR))=IOR(CAR(CAR(PR)),M1)
+      CAR(PR)=IOR(CAR(PR),M1)
+      Q=PR
+      HHO
+      TRVL=CDR(PR)
+      I=1
+3     IF(CAR(TRVL).GE.O) GO TO 102
+      WRITE(6,101)
+      CALL HLT
+102     K=CAR(CAR(TRVL))
+      IF(CXTX(K).LT.0) GO TO 5
+1     IF(LIFE(I).EQ.K) GO TO 20
+      I=I+1 
+      GO TO 1
+20    CAR(CAR(TRVL))=IOR(CAR(CAR(TRVL)),M1) 
+      CAR(TRVL)=IOR(CAR(TRVL),M1)
+2     IF(I.EQ.I1) GO TO 4
+      I=I+1
+8     IF(CDR(TRVL).EQ.NIL) GO TO 80
+      Q=TRVL
+      TRVL=CDR(TRVL)
+      GO TO 3
+4     CDR(TRVL)=NIL
+      GO TO 80
+5     IF(R(LIFE(I)).LT.R(K)) GO TO 11
+10    IF(R(LIFE(I)).GT.S(K)) GO TO 9
+6     IF(I.EQ.I1) GO TO 7
+      IF(R(LIFE(I+1)).LE.R(K)) GO TO 7
+      I=I+1
+      GO TO 6
+7     CAR(CAR(TRVL))=LIFE(I)
+      GO TO 20
+      9     IF(I.EQ.I1) GO TO 11
+      IF(R(LIFE(I+1)).LE.R(K)) GO TO 11
+      I=1+1
+      GO TO 10
+11    IF(TRVL.EQ.PR) GO TO 12
+      CDR (Q) =CDR (TRVL)
+      TRVL=Q
+      GO TO 8
+12    CAR(TRVL)=CAR(CDR(TRVL))
+      CDR(TRVL)=CDR(CDR(TRVL))
+      GO TO 3
+80    IF (CDR(CDR(PR)).NE.NIL) GOTO 81
+      OUT1=1
+      CAR(PR)=IAND(CAR(PR),M2)
+      CAR(CAR(PR))=IAND(CAR(CAR(PR)),M2)
+      PR1=CDR(PR)
+      CAR(PR1)=IAND(CAR(PR1),M2)
+      CAR(CAR(PR1))=IAND(CAR(CAR(PR1)),M2)
+      OUT2=CDR(CAR(PR1))
+      GOTO 90
+81    CAR(IAND(CAR(PR),M2))=IOR(1,M1)
+      CDR(IAND(CAR(PR),M2))=CDR(PR)
+      OUT1=0
+      OUT2=0
+90    CONTINUE
+      RETURN
+      END

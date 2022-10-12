@@ -1,0 +1,48 @@
+      INTEGER FUNCTION MARVL(LPUNT)
+      IMPLICIT INTEGER(A-Z)
+      INTEGER*2 FTYPE,REDEFT
+C
+      COMMON
+     */ ABLOCK / V1(3),ABLOCK(1284)
+     */ BBLOCK / V2(3),BBLOCK(3072)
+     */ CBLOCK / V3(3),CBLOCK(4096)
+     */ PLA / FLA
+     */ FLB / FLB
+     */ FLC / FLC
+     */ NAPPOI / NAPPOI
+     */ BPOINT / BPOINT
+     */ CPOINT / CPOINT
+C
+      DIMENSION
+     *FUN(1284),RETP(1284),CP(1284),BLP(1284),SEGNO(1284),ABP(1284),
+     *BIND(3072),VAR(3072),BBP(3072),SONBRO(4096),NREENT(4096),
+     *VALORE(4096),INF(4096),LISTAR(4096),BLINK(4096)
+C
+      EQUIVALENCE
+     *(ABLOCK(1),FUN(1)),
+     *(ABLOCK(2),RETP(1)),
+     *(ABLOCK(3),CP(1)),
+     *(ABLOCK(4),BLP(1)),
+     *(ABLOCK(5),SEGNO(1)),
+     *(ABLOCK(6),ABP(1)),
+     *(BBLOCK(1),BIND(1)),
+     *(BBLOCK(2),VAR(1)),
+     *(BBLOCK(3),BBP(1)),
+     *(CBLOCK(1),SONBRO(1)),
+     *(CBLOCK(2),NREENT(1)),
+     *(CBLOCK(3),VALORE(1)),
+     *(CBLOCK(3),INF(1)),
+     *(CBLOCK(4),LISTAR(1)),
+     *(CBLOCK(4),BLINK(1))
+C
+      COMMON
+     */REDEFT/REDEFT
+C
+      MARVL=O
+      ARG1=INF(LPUNT)
+      IF(ARG1.EQ.0) RETURN
+      MARVL=- 1
+      IF(ARG1.EQ.1) RETURN
+      MARVL=LIFRVL(ARG1)
+      RETURN
+      END

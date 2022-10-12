@@ -1,0 +1,25 @@
+      SUBROUTINE MAPCXT
+C
+      IMPLICIT INTEGER (A-Z)
+C
+      COMMON
+     */ LIFE / LIFE(128)
+     */ I1 / I1
+     */ NIL / NIL
+     */ CPLIST / BBC(3),CPLIST(128)
+C
+C      ROUTINE PER LA MARCATURA DELLA PROPRIETA' ASSOCIATE AI CONTESTI
+C
+C
+C
+      DO 1 I=1,I1
+      J = LIFE(I)
+      IF(CPLIST(J).EQ.NIL) GO TO 1
+      CALL PROP(CPLIST(J),POUT,NP)
+      IF(POUT.EQ.O) GOTO 2
+      CPLIST(J)=NIL
+      GOTO 1
+2     CPLIST(J)=NP
+      CONTINUE
+      RETURN
+      END

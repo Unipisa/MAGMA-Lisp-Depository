@@ -1,0 +1,55 @@
+     */ FIRSTB / F6(3),FIRSTB(128)
+     */ LIST / F7(3),LIST(128)
+     */ LIB / LIB
+     */ ACXT / ACXT
+     */ CXTC / CXTC
+     */ AAK / AAK
+     */PPDEM / PPDEM
+     */CXTM / CXTM
+     */ RADIX / RADIX
+     */ RRADIX / RRADIX
+C
+      COMMON
+     */ L / L
+     */ CPLIST / BBC(3),CPLIST (128)
+     */ FAPHT / FAPMT
+C
+      COMMON
+     */ BASE / BASE
+     */ EXES / EXES
+     */ LGN / A1(4),LGN(1023)
+C
+      COMMON
+     */ CAR / B1(4),CAR(40000)
+     */ CDR / B2(4),CDR(40000)
+     */ FSSIZE / FSSIZE
+     */ASIZE/ASIZE
+     */BSIZE/BSIZE  /CSIZE/CSIZE
+     */ FLFS / FLPS
+C
+      COMMON
+     */ VALUE / B3(4),VALUE(2047)
+     */ FDEF / B4(4),FDEP(2047)
+     */ PLIST / B5(4),PLIST(2047)
+     */ NPRINA / B6(4), PRINO, NPRINA(6143)
+     */LENGTH/LENGTH
+     */LZATOM / LZATOM
+     */ATOMO/ PLATO(4)
+     */ PUNTI / PUNTI (4)
+     */SYSAT / SYSAT (30)
+     */ ALIST / ALIST (128)
+     */ APUNT / AAAPUN,APUNT(2047)
+     */ ATNAME / ATN,ATNAME(2047)
+     */ ATMLUN / ATHLUN
+     */ LIBAT / LIBAT
+      COMMON /TAT/TAT(3)
+C **  CONTIENE - NIL,NOBIND,T -
+C
+      COMMON/ BUFIO / FCBIN(20),FCBOUT(19),BUFIN(33),BUFOUT(30),
+     */STATUS,CARDIN,COMMAR,BUFB(30)
+C
+      COMMON/ BINSP/ BINSPL,BINSPO,BINSP(16383)
+      COMMON / BINSTK / BINSTK(1024)
+      COMMON / MMFLAG / MMFLAG
+      COMMON / BBBBBB / B
+C

@@ -1,0 +1,40 @@
+C     RACCOLTA ELEMENTI C-BLOCK
+C
+      SUBROUTINE CCBL
+      IMPLICIT INTEGER (A-2)
+      COMMON
+     */CB LOCK/V3 (3),CBLOCK (4096)
+     */FLC/FLC */CSIZE/ CSIZE
+     */KONTC/KO NTC
+     */KGBC/KGBC */NIL/NIL
+      DIMENSION
+     *INF (4096), BLINK (4096),SON BRO (4096), NREENT (4096)
+      EQUIVALENCE 
+     *(CBLOCK (3), INF (1)), (CBLOCK (4), BLINK (1)),
+     *(CBLOCK (1), SONBRO (1)), (CBLOCK (2),NREENT (1))
+      DATA M2/Z7F FF FF FF/
+      KONTC=0 I-CSIZE-3
+9     IF(INF (I) LT.0) GO TO 10 
+      BLINK(I)=NIL
+      FLC=I
+      NREENT(I) =M2 
+      KONTC=KONTC+1
+      GO TO 2
+10    INF(I)=IAND(INF(I), M2)
+      I=I-4
+      IF(I.GE.0) GO TO 9
+      GO TO 8
+3     IF(INF(I).LT.0) GO TO 1
+      BLINK(I)=FLC
+      FLC=I
+      KONTC=KONTC+1
+      IF (KONTC.LE. 10) NREENT(I)=M2
+      GO TO 2
+1     INF(I)=IAND(INF(I), M2)
+2     I=I-4 
+      IF(I.GE.0) GO TO 3    
+8     IF(KONTC.GT.10) GOTO 21
+        KGBC=1 
+21       CONTINUE
+      RETURN
+      END
