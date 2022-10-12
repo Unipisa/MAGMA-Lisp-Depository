@@ -1,1 +1,0 @@
-This folder This folder is used as temporary storage of the .FOR files obtained from the images of the original listing by Goggle Lens, casually discovered by Carlo. Though not specialized for FORTRAN, this tecnique works well for short files that can be adjusted by hand.   

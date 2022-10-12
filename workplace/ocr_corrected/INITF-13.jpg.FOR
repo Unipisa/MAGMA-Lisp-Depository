@@ -1,4 +1,0 @@
-     *PPDEM /Z06000000/,CXTM /Z07000000/
-      DATA KK1/'LISP    '/
-      DATA BUFLAG /Z7FFFFFFF/
-      END

@@ -1,4 +1,0 @@
-C
-150   KGBC = 1
-561   RETURN
-      END
